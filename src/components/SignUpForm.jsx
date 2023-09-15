@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function SignUpForm() {
+export default function SignUpForm({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -17,12 +17,11 @@ export default function SignUpForm() {
         body: JSON.stringify({ username, password }),
       });
 
-      if (!response.ok) {
-        throw new Error("Server Error");
-      }
-
       const result = await response.json();
       console.log(result);
+      
+      setToken(result.token);
+
     } catch (error) {
       setError(error.message);
     }
@@ -37,7 +36,7 @@ export default function SignUpForm() {
               Username: <input value={username} onChange={(e) => setUsername(e.target.value)}/>
             </label>
             <label>
-              Password: <input value={password} onChange={(e) => setPassword(e.target.value)}/>
+              Password: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             </label>
             <button>Submit</button>
           </form>
