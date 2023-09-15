@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 // Define the 'Authenticate' component
 export default function Authenticate({ token }) {
   // Define state variables for success message and error message
@@ -49,7 +50,7 @@ export default function Authenticate({ token }) {
       <h2>Authenticate</h2>
       {successMessage && <p>{successMessage}</p>}
       {error && <p>{error}</p>}
-      <button onClick={handleClick}>Authenticate Token</button>
+      <button  className="token-button" onClick={handleClick}>Authenticate Token</button>
     </div>
   );
 }
